@@ -1,0 +1,49 @@
+# Cursor ignore file
+# Ignore dependencies
+/node_modules
+/vendor
+
+# Ignore build files
+/public/build
+/public/hot
+/public/storage
+
+# Ignore storage files
+/storage/*.key
+/storage/pail
+/storage/logs
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/views
+
+# Ignore environment files and other sensitive data
+.env
+.env.backup
+.env.production
+auth.json
+
+# Ignore compiled code and cache
+/.phpunit.cache
+.phpunit.result.cache
+.phpactor.json
+
+# Ignore large lock files
+composer.lock
+package-lock.json
+
+# Ignore other IDE files
+/.fleet
+/.idea
+/.nova
+/.vscode
+/.zed
+
+# Ignore specific files
+npm-debug.log
+yarn-error.log
+Homestead.json
+Homestead.yaml
+
+# Ignore database files
+*.sqlite
+*.sqlite-journal

@@ -1,0 +1,39 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="holo-gradient" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#4f46e5" stop-opacity="0.2"/>
+      <stop offset="50%" stop-color="#6366f1" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#818cf8" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  
+  <!-- Dark background -->
+  <rect width="1200" height="800" fill="#0f172a"/>
+  
+  <!-- Holographic effect -->
+  <rect width="1200" height="800" fill="url(#holo-gradient)" opacity="0.5"/>
+  
+  <!-- Grid pattern -->
+  <g opacity="0.1">
+    <path d="M0,100 L1200,100 M0,200 L1200,200 M0,300 L1200,300 M0,400 L1200,400 M0,500 L1200,500 M0,600 L1200,600 M0,700 L1200,700" stroke="#a5b4fc" stroke-width="0.5"/>
+    <path d="M100,0 L100,800 M200,0 L200,800 M300,0 L300,800 M400,0 L400,800 M500,0 L500,800 M600,0 L600,800 M700,0 L700,800 M800,0 L800,800 M900,0 L900,800 M1000,0 L1000,800 M1100,0 L1100,800" stroke="#a5b4fc" stroke-width="0.5"/>
+  </g>
+  
+  <!-- Glowing circles -->
+  <g filter="url(#glow)">
+    <circle cx="300" cy="200" r="5" fill="#4f46e5" opacity="0.7"/>
+    <circle cx="700" cy="300" r="8" fill="#6366f1" opacity="0.7"/>
+    <circle cx="900" cy="600" r="6" fill="#818cf8" opacity="0.7"/>
+    <circle cx="500" cy="400" r="10" fill="#4f46e5" opacity="0.7"/>
+    <circle cx="200" cy="700" r="7" fill="#6366f1" opacity="0.7"/>
+    <circle cx="1000" cy="200" r="9" fill="#818cf8" opacity="0.7"/>
+  </g>
+  
+  <!-- Digital lines -->
+  <path d="M0,400 C200,350 400,450 600,400 C800,350 1000,450 1200,400" fill="none" stroke="#6366f1" stroke-width="1" opacity="0.3"/>
+  <path d="M0,450 C200,500 400,400 600,450 C800,500 1000,400 1200,450" fill="none" stroke="#4f46e5" stroke-width="1" opacity="0.3"/>
+</svg>

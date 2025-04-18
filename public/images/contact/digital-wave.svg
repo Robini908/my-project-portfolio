@@ -1,0 +1,33 @@
+<svg width="1200" height="400" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4338ca" stop-opacity="0.1"/>
+      <stop offset="50%" stop-color="#6366f1" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#818cf8" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="400" fill="#0f172a" opacity="0.8"/>
+  <path d="M0,192 C220,100 280,300 500,200 C700,100 800,300 1200,200 L1200,400 L0,400 Z" fill="url(#wave-gradient)"/>
+  <path d="M0,192 C220,100 280,300 500,200 C700,100 800,300 1200,200" fill="none" stroke="#6366f1" stroke-width="1" stroke-dasharray="5,5" opacity="0.3"/>
+  
+  <!-- Digital dots along the wave -->
+  <g opacity="0.6">
+    <circle cx="100" cy="250" r="2" fill="#818cf8"/>
+    <circle cx="200" cy="150" r="2" fill="#818cf8"/>
+    <circle cx="300" cy="250" r="2" fill="#818cf8"/>
+    <circle cx="400" cy="200" r="2" fill="#818cf8"/>
+    <circle cx="500" cy="200" r="2" fill="#818cf8"/>
+    <circle cx="600" cy="150" r="2" fill="#818cf8"/>
+    <circle cx="700" cy="100" r="2" fill="#818cf8"/>
+    <circle cx="800" cy="300" r="2" fill="#818cf8"/>
+    <circle cx="900" cy="250" r="2" fill="#818cf8"/>
+    <circle cx="1000" cy="200" r="2" fill="#818cf8"/>
+    <circle cx="1100" cy="150" r="2" fill="#818cf8"/>
+  </g>
+  
+  <!-- Grid lines -->
+  <g opacity="0.1">
+    <path d="M0,100 L1200,100 M0,200 L1200,200 M0,300 L1200,300" stroke="#a5b4fc" stroke-width="0.5"/>
+    <path d="M100,0 L100,400 M300,0 L300,400 M500,0 L500,400 M700,0 L700,400 M900,0 L900,400 M1100,0 L1100,400" stroke="#a5b4fc" stroke-width="0.5"/>
+  </g>
+</svg>

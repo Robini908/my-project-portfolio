@@ -1,0 +1,32 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite"
+    },
+    "dependencies": {
+        "@barba/core": "^2.10.3",
+        "@tailwindcss/vite": "^4.0.7",
+        "alpinejs": "^3.13.5",
+        "animate.css": "^4.1.1",
+        "autoprefixer": "^10.4.20",
+        "axios": "^1.7.4",
+        "concurrently": "^9.0.1",
+        "framer-motion": "^12.6.3",
+        "gsap": "^3.12.7",
+        "laravel-vite-plugin": "^1.0",
+        "lottie-web": "^5.12.2",
+        "particles.js": "^2.0.0",
+        "swiper": "^11.2.6",
+        "tailwindcss": "^4.0.7",
+        "three": "^0.175.0",
+        "typed.js": "^2.1.0",
+        "vite": "^6.0"
+    },
+    "optionalDependencies": {
+        "@rollup/rollup-linux-x64-gnu": "4.9.5",
+        "@tailwindcss/oxide-linux-x64-gnu": "^4.0.1",
+        "lightningcss-linux-x64-gnu": "^1.29.1"
+    }
+}
