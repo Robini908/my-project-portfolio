@@ -1,0 +1,26 @@
+app = "laravel-portfolio"
+primary_region = "iad"  # Change to your preferred region
+
+[build]
+  [build.args]
+    PHP_VERSION = "8.1"
+
+[env]
+  APP_ENV = "production"
+  APP_DEBUG = "false"
+  LOG_CHANNEL = "stderr"
+  DB_CONNECTION = "sqlite"
+  CACHE_DRIVER = "file"
+  SESSION_DRIVER = "cookie"
+  QUEUE_CONNECTION = "sync"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+
+[mounts]
+  source = "storage_vol"
+  destination = "/var/www/html/storage"
