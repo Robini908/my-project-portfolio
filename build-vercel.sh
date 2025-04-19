@@ -1,43 +1,73 @@
 #!/bin/bash
+set -e
 
-echo "Running Vercel build script..."
+echo "🚀 Starting Vercel build process..."
 
-# Copy the production environment file if it doesn't exist
-if [ ! -f .env ]; then
-  echo "Creating .env file from .env.production..."
-  cp .env.production .env
-fi
+echo "📊 Environment information:"
+echo "Node version: $(node -v)"
+echo "NPM version: $(npm -v)"
+echo "PHP version: $(php -v | head -n 1)"
 
-# Install PHP dependencies
-echo "Installing PHP dependencies..."
-composer install --no-dev --optimize-autoloader
+# Copy the production environment file
+echo "🔧 Setting up environment..."
+cp .env.production .env
 
-# Install Node.js dependencies and build assets
-echo "Installing Node.js dependencies..."
-npm ci
+# Create SQLite database
+echo "🗃️ Setting up database..."
+touch /tmp/database.sqlite
+mkdir -p database
+ln -sf /tmp/database.sqlite database/database.sqlite
 
-echo "Building frontend assets..."
+# Install dependencies
+echo "📦 Installing PHP dependencies..."
+composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+echo "📦 Installing Node.js dependencies..."
+npm ci --no-audit
+
+echo "🔨 Building assets..."
 npm run build
 
-# Basic Laravel setup
-echo "Optimizing Laravel..."
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
-php artisan storage:link
+# Create storage directories
+echo "📂 Setting up storage directories..."
+mkdir -p storage/app/public
+mkdir -p storage/framework/cache
+mkdir -p storage/framework/sessions
+mkdir -p storage/framework/views
+mkdir -p storage/logs
 
-# Ensure the tmp directories exist for Vercel
-echo "Setting up temporary directories..."
+# Create tmp directories for Vercel
 mkdir -p /tmp/app/public
 mkdir -p /tmp/framework/cache
 mkdir -p /tmp/framework/sessions
 mkdir -p /tmp/framework/views
 mkdir -p /tmp/logs
 
-# Ensure the public/storage symlink exists
-if [ ! -d public/storage ]; then
-  echo "Creating storage symlink..."
-  ln -sf ../storage/app/public public/storage
+# Setup storage symlink
+echo "🔗 Creating storage link..."
+php artisan storage:link
+
+# Generate app key if needed
+if [ -z "$APP_KEY" ]; then
+    echo "🔑 Generating application key..."
+    php artisan key:generate --force
 fi
 
-echo "Build completed successfully!"
+# Create schedule endpoint for cron jobs
+echo "⏰ Setting up scheduler endpoint..."
+cat > api/schedule.php << 'EOL'
+<?php
+require __DIR__ . '/../vendor/autoload.php';
+$app = require_once __DIR__ . '/../bootstrap/app.php';
+$kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
+$status = $kernel->call('schedule:run');
+echo "Schedule completed with status: $status";
+EOL
+
+# Optimize Laravel
+echo "⚡ Optimizing Laravel..."
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+echo "✅ Build completed successfully!"
