@@ -6,6 +6,8 @@ import Alpine from 'alpinejs';
 
 // Make Alpine available globally
 window.Alpine = Alpine;
+import Typed from 'typed.js';
+
 
 // Initialize Alpine
 Alpine.start();

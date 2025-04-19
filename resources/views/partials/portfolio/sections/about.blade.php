@@ -1,86 +1,97 @@
-<!-- Professional About Section with Blackboard Effect -->
-<section id="about" class="py-20 relative overflow-hidden">
-    <!-- Subtle Background Elements -->
-    <div class="absolute inset-0 bg-gradient-to-b from-slate-900/20 to-slate-900/40 z-0"></div>
+<!-- Professional About Section with Refined Elegant Design -->
+<section id="about" class="py-24 relative overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+    <!-- Subtle Background Elements - More Refined and Less Distracting -->
+    <div class="absolute inset-0 bg-slate-900/40 z-0"></div>
 
-    <!-- Subtle Grid Pattern -->
-    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiMzZjhmZTUiIGZpbGwtb3BhY2l0eT0iLjAzIiBkPSJNMzYgMzRoLTJWMTZoMnYxOHptNC0yVjE2aDJ2MTZoLTJ6bS0yMyAyVjE2aC0ydjE4aDJ6bS00LTJWMTZoLTJ2MTZoMnptMTEtMTRoLTJ2MThoMlYxOHptNCAyaDJ2MTRoLTJWMjB6bS0xNyAwdjE0aC0yVjIwaDJ6bTEwIDBoMnYxNGgtMlYyMHoiLz48cGF0aCBzdHJva2U9IiMzZjhmZTUiIHN0cm9rZS1vcGFjaXR5PSIuMDUiIHN0cm9rZS13aWR0aD0iLjUiIGQ9Ik00MCAzOHYyMk0yMCAzOHYyMk0zOCAyMEgyTTM4IDQwSDJNNDAgMjBoMjBNNDAgNDBoMjAiLz48L2c+PC9zdmc+')] opacity-30 z-0"></div>
+    <!-- Refined Subtle Pattern - Less Busy -->
+    <div class="absolute inset-0 opacity-5 z-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iLjEiIGQ9Ik00MCA0MEgwVjIwaDIwVjBoMjB2NDBaIi8+PC9nPjwvc3ZnPg==')]"></div>
+
+    <!-- Very Subtle Accent Shapes - Lower Opacity and More Subtle Blur -->
+    <div class="absolute top-40 left-20 w-96 h-96 bg-indigo-500/5 rounded-full filter blur-4xl"></div>
+    <div class="absolute bottom-40 right-20 w-96 h-96 bg-blue-500/5 rounded-full filter blur-4xl"></div>
 
     <div class="container mx-auto px-6 relative z-10">
-        <!-- Clean Section Header -->
-        <div class="text-center mb-16"
+        <!-- Refined Section Header -->
+        <div class="text-center mb-20"
              x-data
              x-intersect="$el.classList.add('opacity-100', 'translate-y-0')"
              class="opacity-0 translate-y-4 transition duration-1000">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-blue-600">About Me</h2>
-            <div class="w-24 h-1 mx-auto bg-gradient-to-r from-indigo-500 to-blue-600 rounded-full mb-6"></div>
-            <p class="text-gray-300 max-w-3xl mx-auto">
-                {{ $tagline ?? 'Get to know me and my journey in the field of computer science.' }}
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">About <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-blue-500">Me</span></h2>
+            <div class="w-28 h-0.5 mx-auto bg-gradient-to-r from-indigo-400 to-blue-500 rounded-full mb-8"></div>
+            <p class="text-gray-300 max-w-3xl mx-auto text-lg">
+                {{ $tagline ?? 'Crafting digital experiences that blend technical expertise with creative innovation.' }}
             </p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <!-- Content Column with Blackboard Effect -->
-            <div class="order-2 lg:order-1 bg-slate-900/90 backdrop-blur-sm p-8 rounded-lg border border-slate-700/50 shadow-xl blackboard-container"
+            <!-- Refined Content Column with Elegant Design -->
+            <div class="order-2 lg:order-1 bg-slate-900/80 backdrop-blur p-10 rounded-xl border border-slate-800 shadow-2xl blackboard-container relative overflow-hidden"
                  x-data
                  x-intersect="initBlackboardEffect()"
                  class="opacity-0 -translate-x-4 transition duration-1000 delay-300">
 
-                <!-- Teacher-Style Content Header -->
-                <div class="flex items-center justify-between mb-6 border-b border-slate-700/50 pb-3">
+                <!-- Subtle Corner Accents -->
+                <div class="absolute top-0 left-0 w-20 h-20 border-t border-l border-indigo-500/20 rounded-tl-lg"></div>
+                <div class="absolute bottom-0 right-0 w-20 h-20 border-b border-r border-blue-500/20 rounded-br-lg"></div>
+
+                <!-- Elegant Content Header with Subtle Border -->
+                <div class="flex items-center justify-between mb-8 border-b border-slate-700/30 pb-4">
                     <h3 class="text-2xl font-chalk text-white flex items-center">
-                        <span class="text-yellow-200 mr-3">📝</span>
-                        <span class="chalk-title">Who Am I?</span>
+                        <span class="text-yellow-200 mr-3">✨</span>
+                        <span class="chalk-title">My Journey</span>
                     </h3>
                     <div class="flex items-center space-x-2">
-                        <div class="w-3 h-3 rounded-full bg-red-400"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-red-400/70"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-yellow-400/70"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-green-400/70"></div>
                     </div>
                 </div>
 
-                <!-- Blackboard Text Content -->
+                <!-- Refined Text Content -->
                 <div class="text-gray-100 space-y-6 leading-relaxed font-chalk chalk-text" id="blackboard-content">
                     <p class="chalk-line">
-                        I'm a passionate Computer Science professional with a keen interest in developing innovative solutions that bridge technology and everyday needs. My journey has equipped me with a strong foundation in both theoretical principles and practical applications.
+                        I'm Abraham Opuba, a passionate Full Stack Developer with a mission to transform complex problems into elegant, user-friendly solutions. With expertise in Laravel, JavaScript, and modern front-end frameworks, I specialize in building scalable web applications that deliver exceptional user experiences.
                     </p>
                     <p class="chalk-line">
-                        Through focused dedication to both personal projects and professional experiences, I've sharpened my technical skills and deepened my understanding of real-world challenges in the technology industry.
+                        My journey in technology is driven by continuous learning and growth. I blend technical proficiency with creative thinking to develop intuitive digital experiences that exceed expectations. Each project is an opportunity to innovate and push boundaries.
+                    </p>
+                    <p class="chalk-line">
+                        Beyond coding, I'm deeply invested in open-source contributions, mentoring fellow developers, and staying at the forefront of emerging technologies that shape our digital landscape.
                     </p>
                 </div>
 
-                <!-- Professional Quality Indicators with Chalk Style -->
-                <div class="grid grid-cols-2 gap-6 my-8">
+                <!-- Enhanced Professional Qualities with Subtle Hover Effects -->
+                <div class="grid grid-cols-2 gap-6 my-10">
                     @if(isset($qualities) && is_array($qualities))
                         @foreach($qualities as $quality)
-                            <div class="flex items-center group chalk-quality">
-                                <div class="w-2 h-2 bg-yellow-200 rounded-full mr-3 group-hover:bg-yellow-100 transition-colors duration-300"></div>
-                                <span class="text-yellow-100 group-hover:text-white transition-colors duration-300">{{ $quality }}</span>
+                            <div class="flex items-center group chalk-quality hover:translate-x-1 transition duration-300">
+                                <div class="w-2 h-2 bg-indigo-400/70 rounded-full mr-3 group-hover:bg-indigo-300 transition-colors duration-300"></div>
+                                <span class="text-gray-200 group-hover:text-white transition-colors duration-300">{{ $quality }}</span>
                             </div>
                         @endforeach
                     @else
-                        <div class="flex items-center group chalk-quality">
-                            <div class="w-2 h-2 bg-yellow-200 rounded-full mr-3 group-hover:bg-yellow-100 transition-colors duration-300"></div>
-                            <span class="text-yellow-100 group-hover:text-white transition-colors duration-300">Problem Solver</span>
+                        <div class="flex items-center group chalk-quality hover:translate-x-1 transition duration-300">
+                            <div class="w-2 h-2 bg-indigo-400/70 rounded-full mr-3 group-hover:bg-indigo-300 transition-colors duration-300"></div>
+                            <span class="text-gray-200 group-hover:text-white transition-colors duration-300">Innovative Problem Solver</span>
                         </div>
-                        <div class="flex items-center group chalk-quality">
-                            <div class="w-2 h-2 bg-yellow-200 rounded-full mr-3 group-hover:bg-yellow-100 transition-colors duration-300"></div>
-                            <span class="text-yellow-100 group-hover:text-white transition-colors duration-300">Fast Learner</span>
+                        <div class="flex items-center group chalk-quality hover:translate-x-1 transition duration-300">
+                            <div class="w-2 h-2 bg-indigo-400/70 rounded-full mr-3 group-hover:bg-indigo-300 transition-colors duration-300"></div>
+                            <span class="text-gray-200 group-hover:text-white transition-colors duration-300">Continuous Learner</span>
                         </div>
-                        <div class="flex items-center group chalk-quality">
-                            <div class="w-2 h-2 bg-yellow-200 rounded-full mr-3 group-hover:bg-yellow-100 transition-colors duration-300"></div>
-                            <span class="text-yellow-100 group-hover:text-white transition-colors duration-300">Team Player</span>
+                        <div class="flex items-center group chalk-quality hover:translate-x-1 transition duration-300">
+                            <div class="w-2 h-2 bg-indigo-400/70 rounded-full mr-3 group-hover:bg-indigo-300 transition-colors duration-300"></div>
+                            <span class="text-gray-200 group-hover:text-white transition-colors duration-300">Collaborative Team Player</span>
                         </div>
-                        <div class="flex items-center group chalk-quality">
-                            <div class="w-2 h-2 bg-yellow-200 rounded-full mr-3 group-hover:bg-yellow-100 transition-colors duration-300"></div>
-                            <span class="text-yellow-100 group-hover:text-white transition-colors duration-300">Detail Oriented</span>
+                        <div class="flex items-center group chalk-quality hover:translate-x-1 transition duration-300">
+                            <div class="w-2 h-2 bg-indigo-400/70 rounded-full mr-3 group-hover:bg-indigo-300 transition-colors duration-300"></div>
+                            <span class="text-gray-200 group-hover:text-white transition-colors duration-300">Detail-Oriented Perfectionist</span>
                         </div>
                     @endif
                 </div>
 
-                <!-- Resume Button with Chalk Style -->
-                <div class="mt-6 chalk-button">
-                    <x-resume-button style="outline" size="lg" class="bg-yellow-600/30 hover:bg-yellow-500/40 text-white border-yellow-500/30 hover:border-yellow-500/50">
+                <!-- Elegant Resume Button -->
+                <div class="mt-8 chalk-button">
+                    <x-resume-button style="outline" size="lg" class="bg-gradient-to-r from-indigo-500/10 to-blue-500/10 hover:from-indigo-500/20 hover:to-blue-500/20 text-white border border-indigo-500/30 hover:border-indigo-500/50 shadow-md transition-all duration-300">
                         <span class="flex items-center">
                             View Resume
                             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -90,70 +101,71 @@
                     </x-resume-button>
                 </div>
 
-                <!-- Chalk dust particles container -->
+                <!-- Subtle Particles Effect -->
                 <div class="chalk-dust-container absolute pointer-events-none"></div>
             </div>
 
-            <!-- Classroom-Styled Image Column -->
+            <!-- Refined Image Column with Elegant Design -->
             <div class="order-1 lg:order-2 relative"
                  x-data
                  x-intersect="$el.classList.add('opacity-100', 'translate-x-0'); initImageEffect();"
                  class="opacity-0 translate-x-4 transition duration-1000 delay-500">
 
-                <!-- Notebook Paper Style Container -->
-                <div class="backdrop-blur-sm bg-white/5 p-6 rounded-lg shadow-xl relative notebook-container">
-                    <!-- Red margin line -->
-                    <div class="absolute left-8 top-0 bottom-0 w-px bg-red-400/50"></div>
+                <!-- Elegant Image Container -->
+                <div class="backdrop-blur-sm bg-slate-900/40 p-8 rounded-xl shadow-xl relative notebook-container">
+                    <!-- Subtle Decorative Line -->
+                    <div class="absolute left-10 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-400/20 via-purple-400/10 to-blue-400/20"></div>
 
-                    <!-- Notebook holes -->
+                    <!-- Minimal Notebook Styling -->
                     <div class="absolute left-3 top-0 bottom-0 flex flex-col justify-around items-center pointer-events-none">
-                        <div class="w-3 h-3 rounded-full border-2 border-slate-400/30 bg-slate-800/30"></div>
-                        <div class="w-3 h-3 rounded-full border-2 border-slate-400/30 bg-slate-800/30"></div>
-                        <div class="w-3 h-3 rounded-full border-2 border-slate-400/30 bg-slate-800/30"></div>
+                        <div class="w-3 h-3 rounded-full border border-indigo-400/20 bg-indigo-400/10"></div>
+                        <div class="w-3 h-3 rounded-full border border-indigo-400/20 bg-indigo-400/10"></div>
+                        <div class="w-3 h-3 rounded-full border border-indigo-400/20 bg-indigo-400/10"></div>
                     </div>
 
-                    <!-- Notebook lines -->
-                    <div class="absolute inset-0 bg-[repeating-linear-gradient(transparent,transparent_28px,rgba(255,255,255,0.1)_28px,rgba(255,255,255,0.1)_29px)] pointer-events-none"></div>
+                    <!-- Very Subtle Notebook Lines -->
+                    <div class="absolute inset-0 bg-[repeating-linear-gradient(transparent,transparent_29px,rgba(255,255,255,0.03)_29px,rgba(255,255,255,0.03)_30px)] pointer-events-none"></div>
 
-                    <!-- Main Image with Polaroid Style -->
-                    <div class="relative ml-6 rounded-sm overflow-hidden shadow-xl transition-all duration-500 image-container" x-data="{ rotated: false }" @mouseover="rotated = true" @mouseout="rotated = false" :class="{ 'rotate-2': rotated }">
-                        <div class="p-3 bg-gray-100 rounded-sm">
-                            <div class="overflow-hidden rounded-sm">
+                    <!-- Elegant Photo Display -->
+                    <div class="relative ml-6 rounded overflow-hidden shadow-xl transition-all duration-500 image-container" x-data="{ rotated: false }" @mouseover="rotated = true" @mouseout="rotated = false" :class="{ 'rotate-1': rotated }">
+                        <div class="p-3 bg-white rounded">
+                            <div class="overflow-hidden rounded">
                                 <img src="{{ $aboutImage ?? 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1744&q=80' }}"
                                      alt="Working on code"
                                      class="w-full h-auto transition duration-700 ease-out image-zoom">
                             </div>
 
-                            <!-- Masking tape -->
-                            <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 rotate-3 w-16 h-6 bg-yellow-100/80 opacity-70"></div>
+                            <!-- Subtle Decorative Element -->
+                            <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 rotate-1 w-16 h-4 bg-indigo-100/90 opacity-70"></div>
 
-                            <!-- Image Caption -->
+                            <!-- Simple Image Caption -->
                             <div class="pt-4 pb-1 text-center">
-                                <p class="text-gray-700 font-chalk text-sm mb-1">Developing Solutions</p>
+                                <p class="text-gray-700 font-chalk text-sm mb-1">Crafting Digital Experiences</p>
                                 <div class="w-12 h-px bg-gray-300 mx-auto"></div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Skills Annotations with Handwritten Style -->
-                    <div class="absolute top-4 right-4 transform rotate-6 skills-annotation">
-                        <div class="font-chalk text-yellow-200 text-sm px-4 py-2 bg-slate-800/70 rounded-md shadow annotation-item">
-                            <span class="underline decoration-wavy decoration-yellow-500/50">Tech Stack:</span>
-                            <div class="flex gap-2 mt-2">
-                                <span class="px-2 py-1 bg-slate-700/50 rounded text-xs">React</span>
-                                <span class="px-2 py-1 bg-slate-700/50 rounded text-xs">Node.js</span>
-                                <span class="px-2 py-1 bg-slate-700/50 rounded text-xs">MongoDB</span>
+                    <!-- Refined Skills Annotation -->
+                    <div class="absolute top-4 right-4 transform rotate-3 skills-annotation">
+                        <div class="font-chalk text-gray-200 text-sm px-4 py-2 bg-slate-800/60 rounded shadow annotation-item">
+                            <span class="text-indigo-300">Expert In:</span>
+                            <div class="flex flex-wrap gap-2 mt-2">
+                                <span class="px-2 py-1 bg-slate-700/30 rounded text-xs hover:bg-indigo-500/20 transition duration-300">Laravel</span>
+                                <span class="px-2 py-1 bg-slate-700/30 rounded text-xs hover:bg-blue-500/20 transition duration-300">React</span>
+                                <span class="px-2 py-1 bg-slate-700/30 rounded text-xs hover:bg-emerald-500/20 transition duration-300">Vue.js</span>
+                                <span class="px-2 py-1 bg-slate-700/30 rounded text-xs hover:bg-purple-500/20 transition duration-300">Node.js</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Experience Annotation -->
-                    <div class="absolute -bottom-3 left-12 transform -rotate-3 experience-annotation">
-                        <div class="font-chalk text-gray-100 flex items-center px-4 py-2 bg-slate-800/70 rounded-md shadow annotation-item">
-                            <svg class="w-5 h-5 text-yellow-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <!-- Refined Experience Annotation -->
+                    <div class="absolute -bottom-2 left-12 transform -rotate-2 experience-annotation">
+                        <div class="font-chalk text-gray-200 flex items-center px-4 py-2 bg-slate-800/60 rounded shadow annotation-item">
+                            <svg class="w-4 h-4 text-indigo-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            <span class="text-sm">{{ $experience ?? '5+ Years Experience' }}</span>
+                            <span class="text-sm">{{ $experience ?? '5+ Years Professional Experience' }}</span>
                         </div>
                     </div>
                 </div>
@@ -162,20 +174,18 @@
     </div>
 </section>
 
-<!-- Add Blackboard Effect CSS -->
+<!-- Refined CSS for Elegant Design - More Subtle Animations -->
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Just+Another+Hand&display=swap');
 
     .blackboard-container {
-        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2) 1px, transparent 1px),
-                          linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-        background-size: 20px 20px;
         position: relative;
+        background-size: 30px 30px;
     }
 
     .font-chalk {
-        font-family: 'Architects Daughter', 'Just Another Hand', cursive;
-        letter-spacing: 0.5px;
+        font-family: 'Architects Daughter', system-ui, sans-serif;
+        letter-spacing: 0.2px;
     }
 
     .chalk-line {
@@ -186,7 +196,7 @@
     .chalk-line.visible {
         opacity: 1;
         transform: translateY(0);
-        transition: opacity 0.5s ease, transform 0.5s ease;
+        transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
     .chalk-title, .chalk-quality, .chalk-button {
@@ -195,14 +205,14 @@
 
     .chalk-title.visible, .chalk-quality.visible, .chalk-button.visible {
         opacity: 1;
-        transition: opacity 0.5s ease;
+        transition: opacity 0.8s ease;
     }
 
     .chalk-dust {
         position: absolute;
-        width: 3px;
-        height: 3px;
-        background-color: rgba(255, 255, 255, 0.7);
+        width: 2px;
+        height: 2px;
+        background-color: rgba(255, 255, 255, 0.5);
         border-radius: 50%;
         pointer-events: none;
     }
@@ -215,13 +225,13 @@
 
     .annotation-item {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(10px);
     }
 
     .annotation-item.visible {
         opacity: 1;
         transform: translateY(0);
-        transition: opacity 0.5s ease, transform 0.5s ease;
+        transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
     .image-zoom {
@@ -234,7 +244,7 @@
     }
 </style>
 
-<!-- Add JavaScript for Blackboard Writing Effect -->
+<!-- JavaScript for Subtle Animations -->
 <script>
     function initBlackboardEffect() {
         // Make the container visible first
@@ -243,7 +253,6 @@
         // Animate the title
         setTimeout(() => {
             document.querySelector('.chalk-title').classList.add('visible');
-            createChalkDust();
         }, 500);
 
         // Animate each line of content
@@ -252,7 +261,6 @@
             setTimeout(() => {
                 line.classList.add('visible');
                 createChalkDust();
-                playChalkSound();
             }, 1000 + (index * 800));
         });
 
@@ -261,7 +269,6 @@
         qualities.forEach((quality, index) => {
             setTimeout(() => {
                 quality.classList.add('visible');
-                createChalkDust();
             }, 2600 + (index * 300));
         });
 
@@ -283,7 +290,7 @@
 
     function createChalkDust() {
         const container = document.querySelector('.chalk-dust-container');
-        const dustCount = Math.floor(Math.random() * 5) + 3;
+        const dustCount = Math.floor(Math.random() * 3) + 2;
 
         for (let i = 0; i < dustCount; i++) {
             const dust = document.createElement('div');
@@ -296,10 +303,10 @@
             dust.style.left = `${left}%`;
 
             // Random opacity
-            dust.style.opacity = (Math.random() * 0.5) + 0.3;
+            dust.style.opacity = (Math.random() * 0.4) + 0.2;
 
             // Random size
-            const size = (Math.random() * 2) + 1;
+            const size = (Math.random() * 1.5) + 0.5;
             dust.style.width = `${size}px`;
             dust.style.height = `${size}px`;
 
@@ -307,35 +314,12 @@
 
             // Animate and remove
             setTimeout(() => {
-                dust.style.transform = `translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 5}px)`;
+                dust.style.transform = `translate(${Math.random() * 15 - 7}px, ${Math.random() * 15 - 5}px)`;
                 dust.style.opacity = '0';
                 setTimeout(() => {
                     dust.remove();
-                }, 1000);
+                }, 800);
             }, 50);
-        }
-    }
-
-    function playChalkSound() {
-        // Create a simple audio context for chalk writing sound
-        try {
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-
-            oscillator.type = 'sawtooth';
-            oscillator.frequency.setValueAtTime(Math.random() * 200 + 800, audioContext.currentTime);
-
-            gainNode.gain.setValueAtTime(0.05, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 0.2);
-
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-
-            oscillator.start();
-            oscillator.stop(audioContext.currentTime + 0.2);
-        } catch (e) {
-            console.log('Audio context not supported or user interaction required');
         }
     }
 
