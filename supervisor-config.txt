@@ -1,0 +1,12 @@
+[program:portfolio-queue]
+process_name=%(program_name)s_%(process_num)02d
+command=php /path/to/your/portfolio/artisan queue:work database --queue=emails --sleep=3 --tries=3 --max-time=3600
+autostart=true
+autorestart=true
+stopasgroup=true
+killasgroup=true
+user=www-data
+numprocs=1
+redirect_stderr=true
+stdout_logfile=/path/to/your/portfolio/storage/logs/worker.log
+stopwaitsecs=3600

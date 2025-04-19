@@ -6,9 +6,11 @@
             </a>
 
             <div class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="text-gray-300 hover:text-white transition">Home</a>
                 <a href="#about" class="text-gray-300 hover:text-white transition">About</a>
                 <a href="#skills" class="text-gray-300 hover:text-white transition">Skills</a>
                 <a href="#projects" class="text-gray-300 hover:text-white transition">Projects</a>
+                <a href="#resume" class="text-gray-300 hover:text-white transition">Resume</a>
                 <a href="#contact" class="text-gray-300 hover:text-white transition">Contact</a>
 
                 @if (Route::has('login'))
@@ -37,9 +39,11 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
             <div class="flex flex-col space-y-4">
+                <a href="#home" class="text-gray-300 hover:text-white transition">Home</a>
                 <a href="#about" class="text-gray-300 hover:text-white transition">About</a>
                 <a href="#skills" class="text-gray-300 hover:text-white transition">Skills</a>
                 <a href="#projects" class="text-gray-300 hover:text-white transition">Projects</a>
+                <a href="#resume" class="text-gray-300 hover:text-white transition">Resume</a>
                 <a href="#contact" class="text-gray-300 hover:text-white transition">Contact</a>
 
                 @if (Route::has('login'))

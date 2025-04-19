@@ -79,14 +79,16 @@
                 </div>
 
                 <!-- Resume Button with Chalk Style -->
-                @if(isset($resumeLink))
-                    <a href="{{ $resumeLink }}" class="mt-6 inline-flex items-center px-5 py-3 bg-yellow-600/30 hover:bg-yellow-500/40 text-white rounded-md transition duration-300 shadow-md group border border-yellow-500/30 chalk-button">
-                        <span>Download Resume</span>
-                        <svg class="w-5 h-5 ml-3 transform transition-transform duration-300 group-hover:translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                        </svg>
-                    </a>
-                @endif
+                <div class="mt-6 chalk-button">
+                    <x-resume-button style="outline" size="lg" class="bg-yellow-600/30 hover:bg-yellow-500/40 text-white border-yellow-500/30 hover:border-yellow-500/50">
+                        <span class="flex items-center">
+                            View Resume
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </span>
+                    </x-resume-button>
+                </div>
 
                 <!-- Chalk dust particles container -->
                 <div class="chalk-dust-container absolute pointer-events-none"></div>

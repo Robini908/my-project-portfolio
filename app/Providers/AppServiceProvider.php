@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Register the LegalModals livewire component
+        \Livewire\Livewire::component('legal-modals', \App\Livewire\LegalModals::class);
     }
 }

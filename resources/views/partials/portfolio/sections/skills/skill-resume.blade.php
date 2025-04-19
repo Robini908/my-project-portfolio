@@ -7,13 +7,13 @@
                 <p class="text-gray-400 chalk-text-sm">Get a detailed PDF with all my skills, experience, and proficiency levels</p>
             </div>
             <div class="flex gap-4">
-                <a href="#" class="inline-flex items-center px-6 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition-all duration-300 transform hover:scale-105">
+                <x-resume-button style="primary" size="lg">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
-                    Download PDF
-                </a>
-                <button 
+                    View Resume
+                </x-resume-button>
+                <button
                     class="inline-flex items-center px-6 py-3 rounded-lg bg-slate-700 hover:bg-slate-600 text-white font-medium transition-all duration-300 transform hover:scale-105"
                     @click="showSkillTimeline = !showSkillTimeline">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -35,15 +35,15 @@
      x-transition:leave="transition ease-in duration-300"
      x-transition:leave-start="opacity-100 transform translate-y-0"
      x-transition:leave-end="opacity-0 transform translate-y-4">
-    
+
     <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-700/50 p-6 md:p-8">
         <h3 class="text-xl md:text-2xl font-semibold text-white mb-6 chalk-text text-center">My Skill Journey Timeline</h3>
-        
+
         <!-- Timeline -->
         <div class="relative">
             <!-- Timeline Line -->
             <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-1 bg-indigo-500/30 transform md:translate-x-0 translate-x-4"></div>
-            
+
             <!-- Timeline Items -->
             <div class="space-y-12">
                 <!-- 2023 -->
@@ -62,7 +62,7 @@
                     <div class="absolute left-4 md:left-1/2 top-4 w-4 h-4 rounded-full bg-indigo-500 border-4 border-slate-900 transform md:translate-x-0 translate-x-0 md:-translate-x-2 timeline-dot"></div>
                     <div class="md:w-1/2 md:pl-8 pl-12"></div>
                 </div>
-                
+
                 <!-- 2021 -->
                 <div class="relative flex flex-col md:flex-row items-start md:justify-between">
                     <div class="md:w-1/2 md:pr-8 hidden md:block"></div>
@@ -79,7 +79,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- 2019 -->
                 <div class="relative flex flex-col md:flex-row items-start md:justify-between">
                     <div class="flex items-center mb-4 md:mb-0 md:w-1/2 md:justify-end md:pr-8">
@@ -96,7 +96,7 @@
                     <div class="absolute left-4 md:left-1/2 top-4 w-4 h-4 rounded-full bg-blue-500 border-4 border-slate-900 transform md:translate-x-0 translate-x-0 md:-translate-x-2 timeline-dot"></div>
                     <div class="md:w-1/2 md:pl-8 pl-12"></div>
                 </div>
-                
+
                 <!-- 2017 -->
                 <div class="relative flex flex-col md:flex-row items-start md:justify-between">
                     <div class="md:w-1/2 md:pr-8 hidden md:block"></div>
@@ -123,31 +123,31 @@
         transition: all 0.3s ease;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-    
+
     .timeline-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
     }
-    
+
     .timeline-dot {
         transition: all 0.3s ease;
         z-index: 10;
     }
-    
+
     .timeline-dot:hover {
         transform: scale(1.5) translate(-33%, 0);
     }
-    
+
     @media (min-width: 768px) {
         .timeline-dot:hover {
             transform: scale(1.5) translate(-33%, 0);
         }
     }
-    
+
     .skill-resume-container {
         transition: all 0.3s ease;
     }
-    
+
     .skill-resume-container:hover {
         box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
     }

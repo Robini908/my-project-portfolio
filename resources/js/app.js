@@ -265,39 +265,43 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typedElement) {
             // Check if Typed.js is loaded
             if (typeof Typed !== 'undefined') {
-                // Enhanced typing effect with more impressive options
+                // Enhanced typing effect with more impressive options and natural typing
                 const typed = new Typed('.typed-text', {
                     strings: [
-                        'Full Stack Developer ^1000',
-                        'UI/UX Designer ^800',
-                        'Machine Learning Engineer ^800',
-                        'Problem Solver ^600',
-                        'Innovation Architect ^800',
-                        'Digital Experience Creator ^900'
+                        'Full Stack Developer',
+                        'Software Architect',
+                        'AI Integration Specialist',
+                        'UI/UX Designer',
+                        'Problem Solver & Innovator',
+                        'Digital Experience Creator'
                     ],
-                    typeSpeed: 50,
-                    backSpeed: 30,
-                    backDelay: 1500,
-                    loop: true,
-                    cursorChar: '|',
-                    smartBackspace: true,
-                    shuffle: false,
-                    startDelay: 1000,
-                    autoInsertCss: true,
-                    fadeOut: true,
-                    fadeOutClass: 'typed-fade-out',
-                    fadeOutDelay: 500,
-                    onComplete: (self) => {
-                        // Trigger custom event when typing completes a cycle
-                        const event = new CustomEvent('typing-complete');
-                        typedElement.dispatchEvent(event);
+                    typeSpeed: 80,                // Base typing speed
+                    backSpeed: 40,                // Speed of deleting
+                    backDelay: 1500,              // Time before starting to backspace
+                    startDelay: 500,              // Delay before starting
+                    loop: true,                   // Loop through the strings
+                    loopCount: Infinity,          // Infinite loop
+                    cursorChar: '|',              // Character for cursor
+                    smartBackspace: false,        // Delete entire string
+                    shuffle: false,               // Don't shuffle strings
+                    showCursor: true,             // Show cursor
+                    autoInsertCss: true,          // Insert CSS automatically
+                    fadeOut: false,               // No fade out
+                    onStringTyped: function() {
+                        // Pause before deleting
+                        setTimeout(() => {}, 1000);
                     },
-                    preStringTyped: (arrayPos, self) => {
+                    // Randomize typing speed to make it look more natural
+                    preStringTyped: function(arrayPos, self) {
                         // Add glitch effect before typing new string
                         typedElement.classList.add('pre-type-glitch');
                         setTimeout(() => {
                             typedElement.classList.remove('pre-type-glitch');
                         }, 500);
+
+                        // Randomize typing speed for a more realistic effect
+                        const typeSpeeds = [40, 60, 80, 100, 120];
+                        self.options.typeSpeed = typeSpeeds[Math.floor(Math.random() * typeSpeeds.length)];
                     }
                 });
             } else {

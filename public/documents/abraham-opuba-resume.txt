@@ -1,0 +1,69 @@
+ABRAHAM OPUBA
+Full Stack Web Developer
+
+CONTACT:
+Email: abrahamopuba@gmail.com
+Phone: +254 123 456 789
+Website: abrahamopuba.com
+Location: Westlands, Nairobi, Kenya
+LinkedIn: linkedin.com/in/abraham-opuba
+GitHub: github.com/abrahamopuba
+
+PROFESSIONAL SUMMARY:
+Passionate Full Stack Developer with over 5 years of experience building robust web applications with modern technologies. Specialized in creating performant, accessible, and user-friendly solutions with PHP/Laravel, JavaScript, Vue.js, React, and other cutting-edge frameworks. Strong background in database design, API development, and responsive front-end implementation.
+
+SKILLS:
+- Languages: PHP, JavaScript, TypeScript, HTML5, CSS3, SQL
+- Frameworks: Laravel, Vue.js, React, Express.js, Tailwind CSS, Bootstrap
+- Database: MySQL, PostgreSQL, MongoDB, Redis
+- Tools: Git, Docker, AWS, CI/CD, Webpack, Vite
+- Methodologies: Agile/Scrum, Test-Driven Development, RESTful API Design
+- Soft Skills: Problem-solving, Team collaboration, Technical writing, Mentoring
+
+WORK EXPERIENCE:
+
+Senior Web Developer | TechSolutions Kenya | 2021-Present
+- Led development of enterprise-level web applications using Laravel and Vue.js
+- Implemented and maintained RESTful APIs serving mobile and web platforms
+- Improved application performance by 40% through database optimization and caching
+- Managed a team of 4 junior developers and provided technical mentorship
+- Implemented automated testing strategies resulting in 30% fewer production bugs
+
+Web Developer | Digital Innovations Ltd | 2019-2021
+- Developed and maintained multiple client websites using PHP/Laravel and JavaScript
+- Created responsive, cross-browser compatible web interfaces using modern CSS frameworks
+- Integrated payment gateways including M-Pesa, PayPal, and Stripe
+- Collaborated with UX/UI designers to implement pixel-perfect interfaces
+- Reduced page load times by 50% through optimization techniques
+
+Junior Developer | WebTech Solutions | 2017-2019
+- Assisted in the development of web applications using PHP and MySQL
+- Implemented front-end designs using HTML5, CSS3, and JavaScript
+- Participated in code reviews and testing procedures
+- Maintained and debugged existing web applications
+- Created technical documentation for clients and internal teams
+
+EDUCATION:
+Bachelor of Science in Computer Science
+University of Nairobi, Kenya
+2013-2017
+
+CERTIFICATIONS:
+- Laravel Certified Developer (2022)
+- AWS Certified Developer - Associate (2021)
+- Google Professional Web Developer Certification (2020)
+- Certified Scrum Master (2019)
+
+LANGUAGES:
+- English (Fluent)
+- Kiswahili (Native)
+- French (Basic)
+
+PROJECTS:
+- E-commerce Platform: Built a complete online shopping platform with inventory management
+- CRM System: Developed a customer relationship management system for a telecom company
+- Healthcare Portal: Created a patient management system for a local hospital
+- Real Estate Listing: Built a property listing and management application
+
+REFERENCES:
+Available upon request

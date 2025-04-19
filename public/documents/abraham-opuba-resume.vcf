@@ -1,0 +1,15 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Opuba;Abraham;;;
+FN:Abraham Opuba
+TITLE:Full Stack Web Developer
+ORG:TechSolutions Kenya
+EMAIL;TYPE=INTERNET,WORK:abrahamopuba@gmail.com
+TEL;TYPE=CELL:+254 123 456 789
+URL:https://abrahamopuba.com
+ADR;TYPE=WORK:;;Westlands;Nairobi;;00100;Kenya
+NOTE:Passionate Full Stack Developer with over 5 years of experience building robust web applications with modern technologies.
+URL;TYPE=LinkedIn:https://linkedin.com/in/abraham-opuba
+URL;TYPE=GitHub:https://github.com/abrahamopuba
+URL;TYPE=Twitter:https://twitter.com/abrahamopuba
+END:VCARD
