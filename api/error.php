@@ -1,109 +1,106 @@
 <?php
-// Set proper content type
+// Get error details from parameters or use defaults
+$status = $_GET['status'] ?? 500;
+$message = $_GET['message'] ?? 'An unexpected error occurred';
+
+// Ensure proper Content-Type is set
 header('Content-Type: text/html; charset=UTF-8');
-
-// Get error status (default to 500)
-$status = isset($_GET['status']) ? intval($_GET['status']) : 500;
-$message = $_GET['message'] ?? 'Something went wrong';
-
-// Valid status codes
-$validStatuses = [400, 401, 403, 404, 500, 503];
-if (!in_array($status, $validStatuses)) {
-    $status = 500;
-}
-
-// Map status to title
-$titles = [
-    400 => 'Bad Request',
-    401 => 'Unauthorized',
-    403 => 'Forbidden',
-    404 => 'Page Not Found',
-    500 => 'Server Error',
-    503 => 'Service Unavailable'
-];
-
-$title = $titles[$status] ?? 'Error';
-
-// Set the HTTP status code
-http_response_code($status);
+header("HTTP/1.1 $status");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title; ?> | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Error - <?php echo htmlspecialchars($status); ?></title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 1rem;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .error-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
             text-align: center;
         }
-        .container {
-            max-width: 30rem;
-            width: 100%;
-            margin: 0 auto;
-        }
-        .status {
-            font-size: 5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #6366f1, #8b5cf6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
         h1 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #f1f5f9;
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #1e293b;
+        }
+        .status-code {
+            font-size: 72px;
+            font-weight: bold;
+            color: #0ea5e9;
+            margin: 0;
         }
         p {
-            margin-bottom: 1.5rem;
-            color: #cbd5e1;
+            margin: 16px 0;
             line-height: 1.6;
         }
         .btn {
             display: inline-block;
-            background: linear-gradient(to right, #6366f1, #8b5cf6);
+            background-color: #0ea5e9;
             color: white;
-            font-weight: 500;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.375rem;
+            padding: 10px 20px;
+            border-radius: 6px;
             text-decoration: none;
-            transition: all 0.15s ease;
-            border: none;
-            cursor: pointer;
+            font-weight: 500;
+            margin-top: 20px;
+            transition: background-color 0.2s;
         }
         .btn:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
+            background-color: #0284c7;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1e293b;
+                color: #e2e8f0;
+            }
+            .error-container {
+                background-color: #0f172a;
+            }
+            h1 {
+                color: #f8fafc;
+            }
+            .status-code {
+                color: #38bdf8;
+            }
+            .btn {
+                background-color: #38bdf8;
+            }
+            .btn:hover {
+                background-color: #0ea5e9;
+            }
         }
         @media (max-width: 640px) {
-            .status {
-                font-size: 4rem;
+            .error-container {
+                padding: 20px;
+            }
+            .status-code {
+                font-size: 48px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="status"><?php echo $status; ?></div>
-        <h1><?php echo htmlspecialchars($title); ?></h1>
-        <p><?php echo htmlspecialchars($message); ?></p>
-        <a href="/" class="btn">Back to Homepage</a>
+    <div class="error-container">
+        <p class="status-code"><?php echo htmlspecialchars($status); ?></p>
+        <h1><?php echo htmlspecialchars($message); ?></h1>
+        <p>Sorry for the inconvenience. Please try again later or return to the homepage.</p>
+        <a href="/" class="btn">Go to Homepage</a>
     </div>
 </body>
 </html>

@@ -11,12 +11,12 @@ $bootstrapped = require_once __DIR__ . '/bootstrap.php';
 $_SERVER['SCRIPT_NAME'] = '/index.php';
 $_SERVER['REQUEST_URI'] = $_SERVER['REQUEST_URI'] ?? $_SERVER['PATH_INFO'] ?? '/';
 
-// Ensure proper Content-Type header is sent
-if (strpos($_SERVER['REQUEST_URI'], '.php') !== false && strpos($_SERVER['HTTP_USER_AGENT'] ?? '', 'Mobile') !== false) {
+// Ensure proper Content-Type header is sent for all responses
+if (!headers_sent()) {
     header('Content-Type: text/html; charset=UTF-8');
 }
 
-// Fix for mobile User-Agent detection
+// Enhanced mobile detection
 if (isset($_SERVER['HTTP_USER_AGENT']) && (
     strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false ||
     strpos($_SERVER['HTTP_USER_AGENT'], 'Android') !== false ||
@@ -24,10 +24,12 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (
     strpos($_SERVER['HTTP_USER_AGENT'], 'iPad') !== false
 )) {
     $_SERVER['IS_MOBILE'] = true;
+    // Set a cookie to help with client-side detection
+    setcookie('is_mobile', '1', 0, '/', '', true, false);
 }
 
 // Log all requests for debugging
-error_log('DEBUG REQUEST: ' . $_SERVER['REQUEST_URI'] . ' | UA: ' . ($_SERVER['HTTP_USER_AGENT'] ?? 'Unknown'));
+error_log('DEBUG REQUEST: ' . $_SERVER['REQUEST_URI'] . ' | UA: ' . ($_SERVER['HTTP_USER_AGENT'] ?? 'Unknown') . ' | Mobile: ' . (isset($_SERVER['IS_MOBILE']) ? 'Yes' : 'No'));
 
 // Handle special favicon requests that are causing 404 errors
 if ($_SERVER['REQUEST_URI'] === '/favicon.ico' || $_SERVER['REQUEST_URI'] === '/favicon.png') {
@@ -98,6 +100,33 @@ if (strpos($_SERVER['REQUEST_URI'], 'skills') !== false ||
     }
 }
 
+// Enhanced asset handling for CSS and JS files
+if (preg_match('/\.(css|js)$/i', $_SERVER['REQUEST_URI'])) {
+    $filePath = __DIR__ . '/../public' . $_SERVER['REQUEST_URI'];
+    // Check if file exists in public directory
+    if (file_exists($filePath)) {
+        $ext = pathinfo($filePath, PATHINFO_EXTENSION);
+        $contentType = $ext === 'css' ? 'text/css' : 'application/javascript';
+
+        header('Content-Type: ' . $contentType);
+        header('Cache-Control: public, max-age=31536000, immutable');
+        readfile($filePath);
+        exit;
+    }
+
+    // Also check in the build directory as Vite might output files there
+    $buildPath = __DIR__ . '/../public/build' . str_replace('/build', '', $_SERVER['REQUEST_URI']);
+    if (file_exists($buildPath)) {
+        $ext = pathinfo($buildPath, PATHINFO_EXTENSION);
+        $contentType = $ext === 'css' ? 'text/css' : 'application/javascript';
+
+        header('Content-Type: ' . $contentType);
+        header('Cache-Control: public, max-age=31536000, immutable');
+        readfile($buildPath);
+        exit;
+    }
+}
+
 // Block direct access to PHP files that may have leaked into public
 if (preg_match('/\.php$/i', $_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] !== '/index.php') {
     header('HTTP/1.1 404 Not Found');
@@ -134,6 +163,11 @@ try {
         // For the home page, set a flag to enable special handling in Laravel
         $_ENV['VERCEL_HOME_REQUEST'] = true;
         $_SERVER['VERCEL_HOME_REQUEST'] = true;
+    }
+
+    // Ensure Vite assets are correctly loaded
+    if (!defined('LARAVEL_START')) {
+        define('LARAVEL_START', microtime(true));
     }
 
     // Include Laravel's public/index.php to bootstrap the application

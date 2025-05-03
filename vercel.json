@@ -15,6 +15,21 @@
       "dest": "/api/direct.php?status=200&message=OK"
     },
     {
+      "src": "/mobile-detect",
+      "dest": "/public/mobile-detect.html",
+      "headers": {
+        "Cache-Control": "no-store, no-cache"
+      }
+    },
+    {
+      "src": "/mobile-fallback.css",
+      "dest": "/public/mobile-fallback.css",
+      "headers": {
+        "Content-Type": "text/css",
+        "Cache-Control": "public, max-age=0"
+      }
+    },
+    {
       "src": "/resume",
       "dest": "/api/index.php"
     },
@@ -161,6 +176,6 @@
     "LOG_CHANNEL": "stderr",
     "SESSION_DRIVER": "cookie",
     "DB_CONNECTION": "sqlite",
-    "DB_DATABASE": "/tmp/database.sqlite"
+    "DB_DATABASE": ":memory:"
   }
 }
