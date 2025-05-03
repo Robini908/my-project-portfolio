@@ -1,20 +1,44 @@
 <?php
 
 /**
- * This file contains helper functions for Vercel deployment.
+ * Vercel-specific helpers for Laravel
  */
 
-/**
- * Fix the server variables for Vercel.
- */
-function fixServerVars()
-{
-    // Fix REQUEST_URI to include query string if exists
-    if (isset($_SERVER['QUERY_STRING']) && !empty($_SERVER['QUERY_STRING'])) {
+// Create required directories
+if (!is_dir('/tmp/storage/framework/views')) {
+    mkdir('/tmp/storage/framework/views', 0755, true);
+}
+
+if (!is_dir('/tmp/storage/framework/cache')) {
+    mkdir('/tmp/storage/framework/cache', 0755, true);
+}
+
+if (!is_dir('/tmp/storage/framework/sessions')) {
+    mkdir('/tmp/storage/framework/sessions', 0755, true);
+}
+
+if (!is_dir('/tmp/storage/logs')) {
+    mkdir('/tmp/storage/logs', 0755, true);
+}
+
+// Fix URI path for Vercel
+$_SERVER['REQUEST_URI'] = $_SERVER['REQUEST_URI'] ?? $_SERVER['PATH_INFO'] ?? '/';
+
+// Fix query string if it exists
+if (isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] !== '') {
         $_SERVER['REQUEST_URI'] .= '?' . $_SERVER['QUERY_STRING'];
     }
 
-    // Fix HTTPS detection
+// Fix script name for routing
+$_SERVER['SCRIPT_NAME'] = '/index.php';
+
+// Fix for Laravel path_info
+if (!isset($_SERVER['PATH_INFO']) && isset($_SERVER['REQUEST_URI'])) {
+    $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $_SERVER['PATH_INFO'] = $path;
+}
+
+// Fix for HTTPS detection
     if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
         $_SERVER['HTTPS'] = 'on';
     }
@@ -28,100 +52,41 @@ function fixServerVars()
     if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-        header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Authorization');
+    header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Origin, Authorization');
         header('Access-Control-Max-Age: 86400');
         exit(0);
-    }
 }
 
-/**
- * Set up environment variables for Laravel on Vercel.
- */
-function setupEnvForVercel()
-{
-    // Add Vercel environment variables if they exist
-    $vercelEnvVars = [
-        'APP_KEY',
-        'DB_CONNECTION',
-        'DB_HOST',
-        'DB_PORT',
-        'DB_DATABASE',
-        'DB_USERNAME',
-        'DB_PASSWORD',
-        'MAIL_HOST',
-        'MAIL_PORT',
-        'MAIL_USERNAME',
-        'MAIL_PASSWORD',
-        'MAIL_FROM_ADDRESS',
-        'GOOGLE_MAPS_API_KEY'
-    ];
+// Set security headers
+header('X-Content-Type-Options: nosniff');
+header('X-Frame-Options: DENY');
+header('X-XSS-Protection: 1; mode=block');
+header('Referrer-Policy: strict-origin-when-cross-origin');
 
-    foreach ($vercelEnvVars as $var) {
-        if (!getenv($var) && isset($_ENV[$var])) {
-            putenv("$var=" . $_ENV[$var]);
-        }
-    }
+// Fix env vars for Vercel
+putenv('APP_CONFIG_CACHE=/tmp/config.php');
+putenv('APP_EVENTS_CACHE=/tmp/events.php');
+putenv('APP_PACKAGES_CACHE=/tmp/packages.php');
+putenv('APP_ROUTES_CACHE=/tmp/routes.php');
+putenv('APP_SERVICES_CACHE=/tmp/services.php');
+putenv('VIEW_COMPILED_PATH=/tmp/views');
+putenv('CACHE_DRIVER=array');
+putenv('LOG_CHANNEL=stderr');
+putenv('SESSION_DRIVER=array');
 
-    // Set common Laravel paths to /tmp for Vercel compatibility
-    $tempPaths = [
-        'APP_STORAGE' => '/tmp/app',
-        'VIEW_COMPILED_PATH' => '/tmp/views',
-        'SESSION_DRIVER' => 'array',
-        'LOG_CHANNEL' => 'stderr',
-        'CACHE_DRIVER' => 'array',
-    ];
-
-    foreach ($tempPaths as $key => $value) {
-        putenv("$key=$value");
-        $_ENV[$key] = $value;
-        $_SERVER[$key] = $value;
-    }
-
-    // Create necessary directories
-    createStorageDirectories();
+// Ensure storage path is set
+if (!getenv('STORAGE_DIR')) {
+    putenv('STORAGE_DIR=/tmp');
 }
 
-/**
- * Create necessary storage directories.
- */
-function createStorageDirectories()
-{
-    $directories = [
-        '/tmp/app',
-        '/tmp/app/public',
-        '/tmp/framework',
-        '/tmp/framework/cache',
-        '/tmp/framework/sessions',
-        '/tmp/framework/views',
-        '/tmp/logs',
-    ];
-
-    foreach ($directories as $directory) {
-        if (!is_dir($directory)) {
-            mkdir($directory, 0755, true);
-        }
-    }
+// Create database if not exists
+if (!file_exists('/tmp/database.sqlite')) {
+    file_put_contents('/tmp/database.sqlite', '');
 }
 
-/**
- * Set security headers
- */
-function setSecurityHeaders()
-{
-    $headers = [
-        'X-Content-Type-Options' => 'nosniff',
-        'X-Frame-Options' => 'DENY',
-        'X-XSS-Protection' => '1; mode=block',
-        'Referrer-Policy' => 'strict-origin-when-cross-origin',
-        'Permissions-Policy' => 'accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()'
-    ];
-
-    foreach ($headers as $key => $value) {
-        header("$key: $value");
-    }
+// Handle Vercel environment issues
+if (isset($_ENV['VERCEL_URL']) && !getenv('APP_URL')) {
+    putenv('APP_URL=https://' . $_ENV['VERCEL_URL']);
 }
 
-// Apply all configurations
-fixServerVars();
-setupEnvForVercel();
-setSecurityHeaders();
+// End of Vercel helpers

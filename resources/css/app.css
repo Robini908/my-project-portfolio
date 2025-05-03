@@ -1,5 +1,6 @@
 @import "tailwindcss";
-@import '../../vendor/livewire/flux/dist/flux.css';
+/* Import Flux CSS only in non-Vercel environments - disabled for Vercel deployment */
+/* @import '../../vendor/livewire/flux/dist/flux.css'; */
 
 :root {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';

@@ -72,7 +72,7 @@
                 <!-- Preview Tab Content -->
                 <div x-show="activeTab === 'preview'" class="h-[70vh]">
                     <iframe
-                        src="/documents/abraham-opuba-resume.pdf"
+                        src="/resume-preview"
                         class="w-full h-full"
                         frameborder="0"
                         title="Resume Preview"

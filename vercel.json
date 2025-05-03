@@ -1,39 +1,126 @@
 {
   "version": 2,
-  "framework": null,
-  "builds": [
-    { "src": "vercel-build.js", "use": "@vercel/node" },
-    { "src": "api/index.php", "use": "vercel-php@0.6.0" },
-    { "src": "public/**", "use": "@vercel/static" }
-  ],
+  "functions": {
+    "api/*.php": {
+      "runtime": "vercel-php@0.7.3"
+    }
+  },
   "routes": [
     {
-      "src": "/build/(.*)",
-      "dest": "/public/build/$1"
+      "src": "/resume",
+      "dest": "/api/index.php"
     },
     {
-      "src": "/favicon.ico",
-      "dest": "/public/favicon.ico"
+      "src": "/resume/download/(?<format>[^/]*)",
+      "dest": "/api/resume-download.php?format=$format"
     },
     {
-      "src": "/robots.txt",
-      "dest": "/public/robots.txt"
+      "src": "/resume-preview",
+      "dest": "/api/resume-preview.php"
     },
     {
-      "src": "/images/(.*)",
-      "dest": "/public/images/$1"
+      "src": "/portfolio",
+      "dest": "/api/index.php"
     },
     {
-      "src": "/assets/(.*)",
-      "dest": "/public/assets/$1"
+      "src": "/skills",
+      "dest": "/api/index.php"
+    },
+    {
+      "src": "/contact",
+      "dest": "/api/index.php"
+    },
+    {
+      "src": "/about",
+      "dest": "/api/index.php"
+    },
+    {
+      "src": "/documents/abraham-opuba-resume.pdf",
+      "dest": "/public/documents/abraham-opuba-resume.pdf",
+      "headers": {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": "inline",
+        "Cache-Control": "public, max-age=86400"
+      }
+    },
+    {
+      "src": "/documents/(.*)",
+      "dest": "/public/documents/$1",
+      "headers": { "Cache-Control": "public, max-age=86400" }
+    },
+    {
+      "src": "/(build|public/build)/(.*)",
+      "dest": "/public/build/$2",
+      "headers": { "Cache-Control": "public, max-age=31536000, immutable" }
     },
     {
       "src": "/(css|js)/(.*)",
-      "dest": "/public/$1/$2"
+      "dest": "/public/$1/$2",
+      "headers": { "Cache-Control": "public, max-age=31536000, immutable" }
     },
     {
-      "src": "/(.+\\.php)$",
-      "dest": "/api/index.php"
+      "src": "/images/(.*)",
+      "dest": "/public/images/$1",
+      "headers": { "Cache-Control": "public, max-age=86400" }
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/public/assets/$1",
+      "headers": { "Cache-Control": "public, max-age=86400" }
+    },
+    {
+      "src": "/storage/(.*)",
+      "dest": "/public/storage/$1",
+      "headers": { "Cache-Control": "public, max-age=86400" }
+    },
+    {
+      "src": "/(.*\\.js)",
+      "dest": "/public/$1",
+      "headers": { "Content-Type": "application/javascript", "Cache-Control": "public, max-age=31536000, immutable" }
+    },
+    {
+      "src": "/(.*\\.css)",
+      "dest": "/public/$1",
+      "headers": { "Content-Type": "text/css", "Cache-Control": "public, max-age=31536000, immutable" }
+    },
+    {
+      "src": "/(.*\\.(jpe?g|png|gif|ico|svg|webp))",
+      "dest": "/public/$1",
+      "headers": {
+        "Content-Type": "image/${1}",
+        "Cache-Control": "public, max-age=86400"
+      }
+    },
+    {
+      "src": "/(.*\\.pdf)",
+      "dest": "/public/$1",
+      "headers": {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": "inline",
+        "Cache-Control": "public, max-age=86400"
+      }
+    },
+    {
+      "src": "/(.*\\.(doc|docx|xls|xlsx|ppt|pptx))",
+      "dest": "/public/$1",
+      "headers": {
+        "Content-Disposition": "attachment; filename=$1",
+        "Content-Type": "application/octet-stream",
+        "Cache-Control": "public, max-age=86400"
+      }
+    },
+    {
+      "src": "/(favicon\\.ico|robots\\.txt|sitemap\\.xml)",
+      "dest": "/public/$1",
+      "headers": { "Cache-Control": "public, max-age=86400" }
+    },
+    {
+      "src": "/(.*\\.php)",
+      "status": 404,
+      "dest": "/api/error.php?status=404&message=Page+not+found"
+    },
+    {
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
@@ -41,18 +128,23 @@
     }
   ],
   "env": {
+    "APP_NAME": "Portfolio",
     "APP_ENV": "production",
     "APP_DEBUG": "false",
-    "LOG_CHANNEL": "stderr",
-    "CACHE_DRIVER": "array",
-    "SESSION_DRIVER": "cookie",
+    "APP_URL": "${VERCEL_URL}",
+    "APP_KEY": "base64:yWzmvGlct31D4SXJoPAX5fZvdVBc4/ZHp6cC0iMXM3M=",
+
     "APP_CONFIG_CACHE": "/tmp/config.php",
     "APP_EVENTS_CACHE": "/tmp/events.php",
     "APP_PACKAGES_CACHE": "/tmp/packages.php",
     "APP_ROUTES_CACHE": "/tmp/routes.php",
     "APP_SERVICES_CACHE": "/tmp/services.php",
-    "VIEW_COMPILED_PATH": "/tmp/views",
-    "SSR_TEMP_PATH": "/tmp/ssr",
-    "NODE_PATH": "node_modules"
+    "VIEW_COMPILED_PATH": "/tmp",
+
+    "CACHE_DRIVER": "array",
+    "LOG_CHANNEL": "stderr",
+    "SESSION_DRIVER": "cookie",
+    "DB_CONNECTION": "sqlite",
+    "DB_DATABASE": "/tmp/database.sqlite"
   }
 }

@@ -86,7 +86,7 @@
                     <!-- Preview Mode -->
                     <div x-show="$wire.previewMode" class="flex-1 overflow-hidden">
                         <iframe
-                            src="/documents/abraham-opuba-resume.pdf"
+                            src="/resume-preview"
                             class="w-full h-full"
                             frameborder="0"
                             title="Resume Preview"
