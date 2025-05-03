@@ -7,6 +7,14 @@
   },
   "routes": [
     {
+      "src": "/error",
+      "dest": "/api/direct.php"
+    },
+    {
+      "src": "/health",
+      "dest": "/api/direct.php?status=200&message=OK"
+    },
+    {
       "src": "/resume",
       "dest": "/api/index.php"
     },
@@ -33,6 +41,14 @@
     {
       "src": "/about",
       "dest": "/api/index.php"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "/public/favicon.ico"
+    },
+    {
+      "src": "/favicon.png",
+      "dest": "/public/favicon.png"
     },
     {
       "src": "/documents/abraham-opuba-resume.pdf",
