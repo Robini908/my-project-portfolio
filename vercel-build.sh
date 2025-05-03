@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Exit on error
 set -e
@@ -18,7 +18,7 @@ cp .env.production .env
 echo "🗃️ Setting up database..."
 touch /tmp/database.sqlite
 mkdir -p database
-ln -sf /tmp/database.sqlite database/database.sqlite
+cp /tmp/database.sqlite database/database.sqlite
 
 # Install dependencies
 echo "📦 Installing PHP dependencies..."

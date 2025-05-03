@@ -3,11 +3,18 @@ import './alpine-init.js';
 
 // Import Alpine.js
 import Alpine from 'alpinejs';
+import intersect from '@alpinejs/intersect';
+
+// Import our modules
+import './modules/speech-module.js';
+import './modules/ai-features.js';
 
 // Make Alpine available globally
 window.Alpine = Alpine;
 import Typed from 'typed.js';
 
+// Configure Alpine.js
+Alpine.plugin(intersect);
 
 // Initialize Alpine
 Alpine.start();

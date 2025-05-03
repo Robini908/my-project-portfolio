@@ -1,70 +1,58 @@
 {
-    "version": 2,
-    "framework": null,
-    "functions": {
-        "api/index.php": {
-            "runtime": "vercel-php@0.6.0"
-        }
+  "version": 2,
+  "framework": null,
+  "builds": [
+    { "src": "vercel-build.js", "use": "@vercel/node" },
+    { "src": "api/index.php", "use": "vercel-php@0.6.0" },
+    { "src": "public/**", "use": "@vercel/static" }
+  ],
+  "routes": [
+    {
+      "src": "/build/(.*)",
+      "dest": "/public/build/$1"
     },
-    "routes": [
-        {
-            "src": "/build/(.*)",
-            "dest": "/public/build/$1"
-        },
-        {
-            "src": "/favicon/(.*)",
-            "dest": "/public/favicon/$1"
-        },
-        {
-            "src": "/audio/(.*)",
-            "dest": "/public/audio/$1"
-        },
-        {
-            "src": "/documents/(.*)",
-            "dest": "/public/documents/$1"
-        },
-        {
-            "src": "/robots.txt",
-            "dest": "/public/robots.txt"
-        },
-        {
-            "src": "/(css|js)/(.*)",
-            "dest": "/public/$1/$2"
-        },
-        {
-            "src": "/storage/(.*)",
-            "dest": "/public/storage/$1"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/api/index.php"
-        }
-    ],
-    "env": {
-        "APP_NAME": "Personal Portfolio",
-        "APP_ENV": "production",
-        "APP_DEBUG": "false",
-        "APP_URL": "${VERCEL_URL}",
-        "ASSET_URL": "${VERCEL_URL}",
-        "APP_CONFIG_CACHE": "/tmp/config.php",
-        "APP_EVENTS_CACHE": "/tmp/events.php",
-        "APP_PACKAGES_CACHE": "/tmp/packages.php",
-        "APP_ROUTES_CACHE": "/tmp/routes.php",
-        "APP_SERVICES_CACHE": "/tmp/services.php",
-        "VIEW_COMPILED_PATH": "/tmp/views",
-        "CACHE_DRIVER": "array",
-        "LOG_CHANNEL": "stderr",
-        "SESSION_DRIVER": "cookie",
-        "DB_CONNECTION": "sqlite",
-        "DB_DATABASE": "/tmp/database.sqlite"
+    {
+      "src": "/favicon.ico",
+      "dest": "/public/favicon.ico"
     },
-    "buildCommand": "bash ./build-vercel.sh",
-    "outputDirectory": "public",
-    "crons": [
-        {
-            "path": "/api/schedule.php",
-            "schedule": "0 * * * *"
-        }
-    ]
+    {
+      "src": "/robots.txt",
+      "dest": "/public/robots.txt"
+    },
+    {
+      "src": "/images/(.*)",
+      "dest": "/public/images/$1"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/public/assets/$1"
+    },
+    {
+      "src": "/(css|js)/(.*)",
+      "dest": "/public/$1/$2"
+    },
+    {
+      "src": "/(.+\\.php)$",
+      "dest": "/api/index.php"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.php"
+    }
+  ],
+  "env": {
+    "APP_ENV": "production",
+    "APP_DEBUG": "false",
+    "LOG_CHANNEL": "stderr",
+    "CACHE_DRIVER": "array",
+    "SESSION_DRIVER": "cookie",
+    "APP_CONFIG_CACHE": "/tmp/config.php",
+    "APP_EVENTS_CACHE": "/tmp/events.php",
+    "APP_PACKAGES_CACHE": "/tmp/packages.php",
+    "APP_ROUTES_CACHE": "/tmp/routes.php",
+    "APP_SERVICES_CACHE": "/tmp/services.php",
+    "VIEW_COMPILED_PATH": "/tmp/views",
+    "SSR_TEMP_PATH": "/tmp/ssr",
+    "NODE_PATH": "node_modules"
+  }
 }
-

@@ -7,8 +7,13 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
-            refresh: ['resources/views/**/*'],
+            input: [
+                'resources/css/app.css',
+                'resources/js/app.js',
+                'resources/js/modules/speech-module.js',
+                'resources/js/modules/ai-features.js'
+            ],
+            refresh: true,
         }),
         tailwindcss(),
     ],
@@ -20,7 +25,10 @@ export default defineConfig({
             output: {
                 manualChunks: undefined
             }
-        }
+        },
+        emptyOutDir: true,
+        minify: true,
+        sourcemap: false
     },
     server: {
         cors: true,
@@ -28,4 +36,5 @@ export default defineConfig({
             host: 'localhost'
         },
     },
+    base: process.env.ASSET_URL ? process.env.ASSET_URL : '/',
 });
