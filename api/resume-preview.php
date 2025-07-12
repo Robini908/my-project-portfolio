@@ -2,22 +2,6 @@
 
 // Special handler for PDF preview
 
-// Check for mobile
-$isMobile = false;
-if (isset($_SERVER['HTTP_USER_AGENT']) && (
-    strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false ||
-    strpos($_SERVER['HTTP_USER_AGENT'], 'Android') !== false ||
-    strpos($_SERVER['HTTP_USER_AGENT'], 'iPhone') !== false ||
-    strpos($_SERVER['HTTP_USER_AGENT'], 'iPad') !== false
-)) {
-    $isMobile = true;
-}
-
-// If on mobile, let's add more specific headers to help browsers
-if ($isMobile) {
-    error_log('Mobile device detected for resume preview: ' . ($_SERVER['HTTP_USER_AGENT'] ?? 'Unknown'));
-}
-
 // Set headers for inline PDF display
 header('Content-Type: application/pdf');
 header('Content-Disposition: inline; filename="Abraham_Opuba_Resume.pdf"');
@@ -61,18 +45,11 @@ if ($resumeFile) {
     $filesize = filesize($resumeFile);
     header('Content-Length: ' . $filesize);
 
-    // Add additional mobile browser compatibility
-    if ($isMobile) {
-        // These headers help mobile browsers handle PDFs better
-        header('Pragma: public');
-        header('Expires: 0');
-    }
-
     // Read the file and output it
     readfile($resumeFile);
     exit;
 } else {
     // No resume PDF found
     header('HTTP/1.1 404 Not Found');
-    include __DIR__ . '/error.php';
+    echo "Resume PDF not found. Please contact the administrator.";
 }

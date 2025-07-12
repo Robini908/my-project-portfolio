@@ -19,6 +19,14 @@ class ResumeController extends Controller
     }
 
     /**
+     * Display the resume preview (for iframe embedding)
+     */
+    public function preview()
+    {
+        return view('resume-preview');
+    }
+
+    /**
      * Download the resume in various formats
      */
     public function download(Request $request, $format = 'pdf')

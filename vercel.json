@@ -7,29 +7,6 @@
   },
   "routes": [
     {
-      "src": "/error",
-      "dest": "/api/direct.php"
-    },
-    {
-      "src": "/health",
-      "dest": "/api/direct.php?status=200&message=OK"
-    },
-    {
-      "src": "/mobile-detect",
-      "dest": "/public/mobile-detect.html",
-      "headers": {
-        "Cache-Control": "no-store, no-cache"
-      }
-    },
-    {
-      "src": "/mobile-fallback.css",
-      "dest": "/public/mobile-fallback.css",
-      "headers": {
-        "Content-Type": "text/css",
-        "Cache-Control": "public, max-age=0"
-      }
-    },
-    {
       "src": "/resume",
       "dest": "/api/index.php"
     },
@@ -56,14 +33,6 @@
     {
       "src": "/about",
       "dest": "/api/index.php"
-    },
-    {
-      "src": "/favicon.ico",
-      "dest": "/public/favicon.ico"
-    },
-    {
-      "src": "/favicon.png",
-      "dest": "/public/favicon.png"
     },
     {
       "src": "/documents/abraham-opuba-resume.pdf",
@@ -117,10 +86,7 @@
     {
       "src": "/(.*\\.(jpe?g|png|gif|ico|svg|webp))",
       "dest": "/public/$1",
-      "headers": {
-        "Content-Type": "image/${1}",
-        "Cache-Control": "public, max-age=86400"
-      }
+      "headers": { "Cache-Control": "public, max-age=86400" }
     },
     {
       "src": "/(.*\\.pdf)",
@@ -146,24 +112,17 @@
       "headers": { "Cache-Control": "public, max-age=86400" }
     },
     {
-      "src": "/(.*\\.php)",
-      "status": 404,
-      "dest": "/api/error.php?status=404&message=Page+not+found"
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
       "src": "/(.*)",
       "dest": "/api/index.php"
     }
   ],
   "env": {
-    "APP_NAME": "Portfolio",
+    "APP_NAME": "Abraham Opuba - Portfolio",
     "APP_ENV": "production",
     "APP_DEBUG": "false",
-    "APP_URL": "${VERCEL_URL}",
+    "APP_URL": "https://${VERCEL_URL}",
     "APP_KEY": "base64:yWzmvGlct31D4SXJoPAX5fZvdVBc4/ZHp6cC0iMXM3M=",
+    "APP_TIMEZONE": "UTC",
 
     "APP_CONFIG_CACHE": "/tmp/config.php",
     "APP_EVENTS_CACHE": "/tmp/events.php",
@@ -175,7 +134,15 @@
     "CACHE_DRIVER": "array",
     "LOG_CHANNEL": "stderr",
     "SESSION_DRIVER": "cookie",
+    "SESSION_LIFETIME": "120",
+    "SESSION_ENCRYPT": "false",
+    "SESSION_PATH": "/",
+    "SESSION_DOMAIN": "${VERCEL_URL}",
+
     "DB_CONNECTION": "sqlite",
-    "DB_DATABASE": ":memory:"
+    "DB_DATABASE": "/tmp/database.sqlite",
+
+    "FILESYSTEM_DISK": "local",
+    "QUEUE_CONNECTION": "sync"
   }
 }

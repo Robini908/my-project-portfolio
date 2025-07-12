@@ -11,8 +11,7 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
                 'resources/js/modules/speech-module.js',
-                'resources/js/modules/ai-features.js',
-                'resources/js/mobile-handler.js'
+                'resources/js/modules/ai-features.js'
             ],
             refresh: true,
         }),
@@ -24,20 +23,12 @@ export default defineConfig({
         manifest: true,
         rollupOptions: {
             output: {
-                manualChunks: {
-                    vendor: ['alpinejs'],
-                    mobile: ['resources/js/mobile-handler.js'],
-                },
-                entryFileNames: (chunkInfo) => {
-                    return chunkInfo.name === 'mobile'
-                        ? 'assets/mobile.[hash].js'
-                        : 'assets/[name].[hash].js';
-                }
+                manualChunks: undefined
             }
         },
         emptyOutDir: true,
         minify: true,
-        sourcemap: process.env.NODE_ENV !== 'production'
+        sourcemap: false
     },
     server: {
         cors: true,

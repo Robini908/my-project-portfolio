@@ -14,4 +14,5 @@ Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio
 
 // Resume routes
 Route::get('/resume', [ResumeController::class, 'show'])->name('resume.show');
+Route::get('/resume-preview', [ResumeController::class, 'preview'])->name('resume.preview');
 Route::get('/resume/download/{format?}', [ResumeController::class, 'download'])->name('resume.download');
