@@ -5,61 +5,70 @@
       "runtime": "vercel-php@0.7.3"
     }
   },
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "Permissions-Policy",
-          "value": "camera=(), microphone=(), geolocation=()"
-        }
-      ]
-    }
-  ],
   "routes": [
     {
       "src": "/resume",
-      "dest": "/api/index.php"
+      "dest": "/api/index.php",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "X-XSS-Protection": "1; mode=block",
+        "Referrer-Policy": "strict-origin-when-cross-origin"
+      }
     },
     {
       "src": "/resume/download/(?<format>[^/]*)",
-      "dest": "/api/resume-download.php?format=$format"
+      "dest": "/api/resume-download.php?format=$format",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "X-XSS-Protection": "1; mode=block"
+      }
     },
     {
       "src": "/resume-preview",
-      "dest": "/api/resume-preview.php"
+      "dest": "/api/resume-preview.php",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "X-XSS-Protection": "1; mode=block"
+      }
     },
     {
       "src": "/portfolio",
-      "dest": "/api/index.php"
+      "dest": "/api/index.php",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "X-XSS-Protection": "1; mode=block"
+      }
     },
     {
       "src": "/skills",
-      "dest": "/api/index.php"
+      "dest": "/api/index.php",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "X-XSS-Protection": "1; mode=block"
+      }
     },
     {
       "src": "/contact",
-      "dest": "/api/index.php"
+      "dest": "/api/index.php",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "X-XSS-Protection": "1; mode=block"
+      }
     },
     {
       "src": "/about",
-      "dest": "/api/index.php"
+      "dest": "/api/index.php",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "X-XSS-Protection": "1; mode=block"
+      }
     },
     {
       "src": "/documents/abraham-opuba-resume.pdf",
@@ -140,7 +149,13 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/api/index.php"
+      "dest": "/api/index.php",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "X-XSS-Protection": "1; mode=block",
+        "Referrer-Policy": "strict-origin-when-cross-origin"
+      }
     }
   ],
   "env": {
