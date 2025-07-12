@@ -7,19 +7,20 @@
 
 <title>{{ $title ?? 'Personal Portfolio' }}</title>
 
-<!-- Standalone Mobile Fixes -->
+<!-- Mobile Detection and Fix Loading -->
 <script>
-    // Immediately check for mobile
+    // Simple mobile detection
     window.isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     if (window.isMobileDevice) {
         document.documentElement.classList.add('is-mobile-device');
 
-        // Inject standalone mobile fix script
+        // Load mobile fix script immediately
         const script = document.createElement('script');
         script.src = '/mobile-fix.js?v=' + Date.now();
+        script.async = true;
         document.head.appendChild(script);
 
-        // Add fallback CSS early
+        // Load fallback CSS immediately
         const link = document.createElement('link');
         link.rel = 'stylesheet';
         link.href = '/mobile-fallback.css?v=' + Date.now();
@@ -62,74 +63,42 @@
     @media (max-width: 768px) {
         .md\:hidden { display: none !important; }
         .sm\:block { display: block !important; }
+        .lg\:hidden { display: none !important; }
         html, body {
             width: 100%;
             overflow-x: hidden;
+            font-size: 16px;
+        }
+        * {
+            box-sizing: border-box;
         }
     }
 </style>
 
 @vite(['resources/css/app.css', 'resources/js/app.js'])
-@vite(['resources/js/mobile-handler.js'])
 @fluxAppearance
 
-<!-- Mobile detection marker -->
-<script>
-    // Set a flag to know if we're on mobile
-    window.isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-    // Add a class to the HTML element for targeting in CSS
-    if (window.isMobileDevice) {
-        document.documentElement.classList.add('is-mobile-device');
-    }
-
-    // Create a marker element to prevent duplicate processing
-    if (!document.querySelector('[data-mobile-detection]')) {
-        const marker = document.createElement('div');
-        marker.setAttribute('data-mobile-detection', 'true');
-        marker.style.display = 'none';
-        document.head.appendChild(marker);
-    }
-</script>
-
-<!-- Force mobile viewport -->
-@if(isset($isMobile) && $isMobile || (isset($_SERVER['IS_MOBILE']) && $_SERVER['IS_MOBILE']))
+<!-- Mobile viewport optimization -->
 <style>
-    /* Force mobile viewport styles */
+    /* Enhanced mobile styles */
     @media (max-width: 768px) {
         html, body {
-            width: 100%;
-            overflow-x: hidden;
+            width: 100% !important;
+            overflow-x: hidden !important;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
         }
 
-        /* Ensure Tailwind classes are applied correctly */
-        .md\:hidden {
-            display: none !important;
-        }
+        /* Ensure responsive classes work */
+        .md\:hidden { display: none !important; }
+        .sm\:block { display: block !important; }
+        .lg\:hidden { display: none !important; }
 
-        .sm\:block {
-            display: block !important;
+        /* Fix common mobile layout issues */
+        .container, .max-w-7xl, .max-w-6xl, .max-w-5xl {
+            max-width: 100% !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
         }
     }
 </style>
-<script>
-    // Force reload of CSS if mobile detection might have failed
-    document.addEventListener('DOMContentLoaded', function() {
-        // Check if Tailwind hasn't loaded properly
-        if (!document.querySelector('[data-tailwind-loaded]')) {
-            // Add a marker that Tailwind has been handled
-            const marker = document.createElement('div');
-            marker.setAttribute('data-tailwind-loaded', 'true');
-            marker.style.display = 'none';
-            document.body.appendChild(marker);
-
-            // Force reload of stylesheets
-            const links = document.querySelectorAll('link[rel="stylesheet"]');
-            links.forEach(link => {
-                const url = link.href;
-                link.href = url + (url.includes('?') ? '&' : '?') + 'force_reload=' + Date.now();
-            });
-        }
-    });
-</script>
-@endif

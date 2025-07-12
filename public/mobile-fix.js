@@ -1,9 +1,11 @@
 /**
- * Mobile Fix Script - Automatically fixes common PHP/Tailwind issues on mobile
- * This file is loaded independently and doesn't depend on any framework
+ * Professional Mobile Fix Script
+ * Cleans up display issues and ensures proper mobile experience
  */
 
 (function() {
+    'use strict';
+
     // Detect mobile device
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
@@ -11,100 +13,84 @@
         return; // Only apply fixes to mobile devices
     }
 
-    console.log('[Mobile Fix] Applying mobile fixes...');
+    console.log('[Mobile Fix] Initializing mobile optimizations...');
 
-    // Function to remove PHP code
+    // Function to clean up any visible PHP code
     function cleanupPHPCode() {
-        // Check for PHP code in the page
-        const bodyHTML = document.body.innerHTML;
-        if (bodyHTML.includes('<?php') || bodyHTML.includes('<?=')) {
-            console.log('[Mobile Fix] Found PHP code in page - cleaning up');
+        console.log('[Mobile Fix] Cleaning up any visible PHP code...');
 
-            // Remove PHP tags and code
-            document.body.innerHTML = bodyHTML.replace(/(<\?php[^?]*\?>|<\?=.*\?>)/g, '');
-
-            // Remove script tags containing PHP
-            document.querySelectorAll('script').forEach(script => {
-                if (script.innerHTML.includes('<?php')) {
-                    console.log('[Mobile Fix] Removing script with PHP code');
-                    script.remove();
-                }
-            });
-        }
-    }
-
-    // Function to ensure Tailwind is loaded
-    function ensureTailwindLoaded() {
-        // Check if we have evidence that Tailwind isn't loaded
-        const hasTailwind = Array.from(document.styleSheets).some(sheet => {
-            try {
-                return sheet.href && sheet.href.includes('app.css');
-            } catch (e) {
-                return false; // CORS issue reading stylesheet
+        // Remove any elements containing raw PHP code
+        const elementsWithPHP = document.querySelectorAll('*');
+        elementsWithPHP.forEach(element => {
+            if (element.textContent && (element.textContent.includes('<?php') || element.textContent.includes('<?='))) {
+                console.log('[Mobile Fix] Hiding element with PHP code:', element.tagName);
+                element.style.display = 'none';
             }
         });
 
-        if (!hasTailwind) {
-            console.log('[Mobile Fix] Tailwind CSS not detected - loading fallback');
+        // Clean up script tags with PHP
+        document.querySelectorAll('script').forEach(script => {
+            if (script.innerHTML.includes('<?php') || script.innerHTML.includes('<?=')) {
+                console.log('[Mobile Fix] Removing script with PHP code');
+                script.remove();
+            }
+        });
+    }
 
-            // Add fallback CSS
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = '/mobile-fallback.css?v=' + Date.now();
-            document.head.appendChild(link);
+    // Function to ensure proper mobile styling
+    function ensureMobileStyling() {
+        console.log('[Mobile Fix] Applying mobile styling fixes...');
 
-            // Try to load the actual CSS again
-            const mainCSS = document.createElement('link');
-            mainCSS.rel = 'stylesheet';
-            mainCSS.href = '/build/assets/app.css?v=' + Date.now();
-            document.head.appendChild(mainCSS);
-        }
-
-        // Ensure critical classes work
+        // Add critical mobile styles
         const style = document.createElement('style');
+        style.id = 'mobile-fix-styles';
         style.textContent = `
+            /* Critical mobile fixes */
+            html, body {
+                width: 100% !important;
+                overflow-x: hidden !important;
+                -webkit-text-size-adjust: 100%;
+                -ms-text-size-adjust: 100%;
+            }
+
             @media (max-width: 768px) {
-                .md\\:hidden { display: none !important; }
+                .md\\:hidden, .lg\\:hidden { display: none !important; }
                 .sm\\:block { display: block !important; }
-                body { width: 100%; overflow-x: hidden; }
+                .sm\\:flex { display: flex !important; }
+
+                .container, .max-w-7xl, .max-w-6xl, .max-w-5xl {
+                    max-width: 100% !important;
+                    padding-left: 1rem !important;
+                    padding-right: 1rem !important;
+                }
+
+                img { max-width: 100%; height: auto; }
             }
         `;
-        document.head.appendChild(style);
-    }
 
-    // Function to check content type
-    function checkContentType() {
-        // If we see raw PHP, the content type may be wrong
-        const metaTags = document.querySelectorAll('meta');
-        let hasContentType = false;
-
-        metaTags.forEach(meta => {
-            if (meta.httpEquiv === 'Content-Type') {
-                hasContentType = true;
-            }
-        });
-
-        if (!hasContentType) {
-            console.log('[Mobile Fix] Adding content type meta tag');
-            const meta = document.createElement('meta');
-            meta.httpEquiv = 'Content-Type';
-            meta.content = 'text/html; charset=UTF-8';
-            document.head.appendChild(meta);
+        if (!document.getElementById('mobile-fix-styles')) {
+            document.head.appendChild(style);
         }
     }
 
-    // Apply fixes after page is loaded
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', applyFixes);
-    } else {
-        applyFixes();
+    // Function to load fallback CSS if needed
+    function loadFallbackCSS() {
+        console.log('[Mobile Fix] Loading fallback CSS...');
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = '/mobile-fallback.css?v=' + Date.now();
+        link.onload = () => console.log('[Mobile Fix] Fallback CSS loaded');
+        document.head.appendChild(link);
     }
 
+    // Apply fixes immediately and on DOM ready
     function applyFixes() {
+        console.log('[Mobile Fix] Applying all fixes...');
+
         // Run our fixes
         cleanupPHPCode();
-        ensureTailwindLoaded();
-        checkContentType();
+        ensureMobileStyling();
+        loadFallbackCSS();
 
         // Mark that fixes were applied
         const marker = document.createElement('div');
@@ -113,6 +99,16 @@
         marker.dataset.timestamp = Date.now();
         document.body.appendChild(marker);
 
-        console.log('[Mobile Fix] Fixes applied successfully');
+        console.log('[Mobile Fix] All fixes applied successfully');
     }
+
+    // Apply fixes immediately if DOM is ready, otherwise wait
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applyFixes);
+    } else {
+        applyFixes();
+    }
+
+    // Also apply fixes after a short delay to catch any late-loading content
+    setTimeout(applyFixes, 1000);
 })();

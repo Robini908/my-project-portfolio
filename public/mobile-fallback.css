@@ -1,30 +1,71 @@
-/* Mobile fallback styles in case Tailwind fails to load */
-body {
-    font-family: sans-serif;
+/* Professional Mobile Fallback Styles */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     margin: 0;
     padding: 0;
     width: 100%;
     overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
 
+/* Hide raw PHP code if it appears */
+script:contains("<?php"),
+*:contains("<?php") {
+    display: none !important;
+}
+
+/* Mobile-first responsive design */
 @media (max-width: 768px) {
-    .md\:hidden {
+    .md\:hidden, .lg\:hidden {
         display: none !important;
     }
 
-    .sm\:block {
+    .sm\:block, .sm\:flex {
         display: block !important;
+    }
+
+    .sm\:flex {
+        display: flex !important;
     }
 
     body {
         font-size: 16px;
-        line-height: 1.5;
+        line-height: 1.6;
     }
+
+    .container, .max-w-7xl, .max-w-6xl, .max-w-5xl {
+        max-width: 100% !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    /* Fix common layout issues */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Navigation fixes */
+    nav {
+        width: 100%;
+    }
+
+    /* Text sizing */
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.5rem; }
+    h4 { font-size: 1.25rem; }
 }
 
+/* Dark mode support */
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: #1e293b;
+        background-color: #0f172a;
         color: #f8fafc;
     }
 }
